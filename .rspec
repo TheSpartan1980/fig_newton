@@ -1,2 +1,4 @@
---color 
---format Fuubar
+--color
+--format documentation
+--format html
+--out rspec-test-results.html
