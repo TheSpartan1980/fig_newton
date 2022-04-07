@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['2.7']
+        ruby-version: ['2.6', '2.7', '3.0']
 
     steps:
       - uses: actions/checkout@v2
@@ -29,22 +29,22 @@ jobs:
         run: bundle exec rspec spec
       - name: "Tar files"
         if: ${{ success() || failure() }}
-        run: tar -cvf rspec-tests.tar rspec-test-results.html
+        run: tar -cvf rspec-tests-${{ matrix.ruby-version }}.tar rspec-test-results.html
       - uses: actions/upload-artifact@v2
         if: ${{ success() || failure() }}
         with:
-          name: rspec-tests
-          path: rspec-tests.tar
+          name: rspec-tests-${{ matrix.ruby-version }}
+          path: rspec-tests-${{ matrix.ruby-version }}.tar
           retention-days: 14
 
       - name: Run Cucumber tests
         run: bundle exec cucumber
       - name: "Tar files"
         if: ${{ success() || failure() }}
-        run: tar -cvf cucumber-tests.tar cucumber-test-results.html
+        run: tar -cvf cucumber-tests-${{ matrix.ruby-version }}.tar cucumber-test-results.html
       - uses: actions/upload-artifact@v2
         if: ${{ success() || failure() }}
         with:
-          name: cucumber-tests
-          path: cucumber-tests.tar
+          name: cucumber-tests-${{ matrix.ruby-version }}
+          path: cucumber-tests-${{ matrix.ruby-version }}.tar
           retention-days: 14
