@@ -7,7 +7,6 @@ module FigNewton
   extend YmlReader
   extend FigNewton::Missing
 
-
   class << self
     attr_accessor :yml
 

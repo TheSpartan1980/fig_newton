@@ -5,7 +5,7 @@ Given(/^I have read the configuration file$/) do
   FigNewton.load('test_config.yml')
 end
 
-Given(/^I have an environment variable named "([^\"]*)" set to "([^\"]*)"$/) do |env_name, filename|
+Given(/^I have an environment variable named "([^"]*)" set to "([^"]*)"$/) do |env_name, filename|
   FigNewton.yml = nil
   ENV[env_name] = filename
   FigNewton.yml_directory = 'config/yaml'
@@ -16,22 +16,24 @@ Given(/^I have a yml file that is named after the hostname$/) do
   FigNewton.yml = nil
   FigNewton.yml_directory = 'config/yaml'
   @hostname = Socket.gethostname
-  File.open("config/yaml/#{@hostname}.yml", 'w') { |file| file.write("from_the_hostname_file:  read from the hostname file\n") }
+  File.open("config/yaml/#{@hostname}.yml", 'w') do |file|
+    file.write("from_the_hostname_file:  read from the hostname file\n")
+  end
 end
 
 When(/^I have read the default file from the default directory$/) do
   FigNewton.yml = nil
 end
 
-When(/^I ask for the value for "([^\"]*)"$/) do |key|
+When(/^I ask for the value for "([^"]*)"$/) do |key|
   @value = FigNewton.send key
 end
 
-When(/^I ask for a value that does not exist named "([^\"]*)"$/) do |non_existing|
+When(/^I ask for a value that does not exist named "([^"]*)"$/) do |non_existing|
   @does_not_exist = non_existing
 end
 
-When(/^I ask for the node value for "([^\"]*)"$/) do |key|
+When(/^I ask for the node value for "([^"]*)"$/) do |key|
   @value = @value.send(key)
 end
 
@@ -40,26 +42,29 @@ When(/^I ask for a value that does not exist named "(.+)" that has a default val
 end
 
 When(/^I ask for a value that does not exist named "(.+)" that has a default block returning "(.+)"$/) do |key, value|
-  @value = FigNewton.send(key) {
+  @value = FigNewton.send(key) do
     value
-  }
+  end
 end
 
 When(/^I ask for a value that does not exist named "(.+)" that has a default lambda returning "(.+)"$/) do |key, value|
-  mylambda = lambda { |property| @lambda_property = property; return value }
+  mylambda = lambda { |property|
+    @lambda_property = property
+    return value
+  }
   @value = FigNewton.send key, &mylambda
 end
 
 When(/^I ask for a value that does not exist named "(.+)" that has a default proc returning "(.+)"$/) do |key, value|
-  myproc = Proc.new { value }
+  myproc = proc { value }
   @value = FigNewton.send(key, &myproc)
 end
 
-Then(/^I should see "([^\"]*)"$/) do |value|
+Then(/^I should see "([^"]*)"$/) do |value|
   expect(@value).to eql value
 end
 
-Then('I should see {integer}') do |value|
+Then('I should see {int}') do |value|
   expect(@value).to eq(value)
 end
 
@@ -67,7 +72,7 @@ Then('I should see {float}') do |value|
   expect(@value).to eq(value)
 end
 
-Then(/^I should see :([^\"]*)$/) do |value|
+Then(/^I should see :([^"]*)$/) do |value|
   expect(@value).to eql value.to_sym
 end
 
@@ -77,7 +82,7 @@ Then('I should see an array containing {string}, {int}, {float}, :{}') do |strin
 end
 
 Then(/^I should see an array of arrays$/) do
-  array_of_arrays = [[1, 2.0, :three, "four"], ["five", 6, :seven, 8.0]]
+  array_of_arrays = [[1, 2.0, :three, 'four'], ['five', 6, :seven, 8.0]]
   expect(@value).to eq(array_of_arrays)
 end
 
@@ -97,7 +102,7 @@ Then(/^I should have a node$/) do
   expect(@value).to be_an_instance_of FigNewton::Node
 end
 
-Then(/^the "([^\"]*)" value for the node should be "([^\"]*)"$/) do |key, value|
+Then(/^the "([^"]*)" value for the node should be "([^"]*)"$/) do |key, value|
   expect(@value.send(key)).to eql value
 end
 

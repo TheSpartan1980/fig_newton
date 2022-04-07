@@ -7,5 +7,3 @@ Before do
   FigNewton.yml_directory = nil
   ENV.delete 'FIG_NEWTON_FILE'
 end
-
-

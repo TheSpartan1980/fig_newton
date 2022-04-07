@@ -1,15 +1,14 @@
-# -*- encoding: utf-8 -*-
-require File.expand_path('../lib/fig_newton/version', __FILE__)
+require File.expand_path('lib/fig_newton/version', __dir__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ['Jeff Morgan', 'Steve Jackson']
   gem.email         = ['jeff.morgan@leandog.com', 'steve.jackson@leandogsoftware.com']
   gem.license       = 'MIT'
-  gem.description   = %q{Provides a simple mechanism to maintain and use different configurations stored in yml files.}
-  gem.summary       = %q{Provides a simple mechanism to maintain and use different configurations stored in yml files.}
+  gem.description   = 'Provides a simple mechanism to maintain and use different configurations stored in yml files.'
+  gem.summary       = 'Provides a simple mechanism to maintain and use different configurations stored in yml files.'
   gem.homepage      = 'http://github.com/cheezy/fig_newton'
 
-  gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  gem.executables   = `git ls-files -- bin/*`.split("\n").map { |f| File.basename(f) }
   gem.files         = `git ls-files`.split("\n")
   gem.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   gem.name          = 'fig_newton'

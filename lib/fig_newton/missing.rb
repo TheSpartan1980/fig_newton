@@ -17,7 +17,9 @@ module FigNewton
 
     def read_file
       @yml = nil
-      @yml = ::YAML.load(ERB.new(File.read("#{yml_directory}/#{ENV['FIG_NEWTON_FILE']}")).result(binding)) if ENV['FIG_NEWTON_FILE']
+      if ENV['FIG_NEWTON_FILE']
+        @yml = ::YAML.load(ERB.new(File.read("#{yml_directory}/#{ENV['FIG_NEWTON_FILE']}")).result(binding))
+      end
       unless @yml
         hostname = Socket.gethostname
         hostfile = "#{yml_directory}/#{hostname}.yml"
@@ -30,7 +32,7 @@ module FigNewton
 
     def type_known?(value)
       known_types = [String, Integer, TrueClass, FalseClass, Symbol, Float, Array]
-      known_types.any? { |type| value.kind_of? type }
+      known_types.any? { |type| value.is_a? type }
     end
   end
 end
