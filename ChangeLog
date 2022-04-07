@@ -1,5 +1,5 @@
 === Version 1.1.0
-* Fixes
+* Fixes & Updates
   * Updated dependencies
   * Added data and a test to cover an array of arrays
   * Linted files and small refactoring
