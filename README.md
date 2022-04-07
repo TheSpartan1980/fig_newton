@@ -1,6 +1,6 @@
 # FigNewton
 
-[![Build Status](http://travis-ci.org/cheezy/fig_newton.png)](http://travis-ci.org/cheezy/fig_newton)
+[![CI](https://github.com/TheSpartan1980/fig_newton/actions/workflows/main.yml/badge.svg)](https://github.com/TheSpartan1980/fig_newton/actions/workflows/main.yml)
 
 Manages configuration for test suites. It is common to need different configuration information for different test
 environments. For example, the base_url or database login information might change when you move from development to a
