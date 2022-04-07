@@ -55,6 +55,11 @@ Feature: Functionality of the fig_newton gem
     When I ask for the value for "my_array"
     Then I should see an array containing "one", 2, 3.0, :four
 
+  Scenario:  Requesting an Array of values
+    Given I have read the configuration file
+    When I ask for the value for "my_array_of_arrays"
+    Then I should see an array of arrays
+
   Scenario: Requesting a true boolean value
     Given I have read the configuration file
     When I ask for the value for "set_flag"

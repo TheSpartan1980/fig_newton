@@ -19,3 +19,14 @@ my_array:
   - 2
   - 3.0
   - :four
+my_array_of_arrays:
+  -
+    - 1
+    - 2.0
+    - :three
+    - four
+  -
+    - five
+    - 6
+    - :seven
+    - 8.0
