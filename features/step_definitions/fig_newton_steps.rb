@@ -68,7 +68,7 @@ Then('I should see {int}') do |value|
   expect(@value).to eq(value)
 end
 
-Then('I should see {float}') do |value|
+Then('I should see the value {float}') do |value|
   expect(@value).to eq(value)
 end
 

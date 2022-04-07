@@ -48,7 +48,7 @@ Feature: Functionality of the fig_newton gem
   Scenario:  Requesting a decimal value
     Given I have read the configuration file
     When I ask for the value for "my_float"
-    Then I should see 0.25
+    Then I should see the value 0.25
 
   Scenario:  Requesting an Array of values
     Given I have read the configuration file
