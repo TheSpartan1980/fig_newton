@@ -30,7 +30,7 @@ jobs:
       - name: "Tar files"
         if: ${{ success() || failure() }}
         run: tar -cvf rspec-tests-${{ matrix.ruby-version }}.tar rspec-test-results.html
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         if: ${{ success() || failure() }}
         with:
           name: rspec-tests-${{ matrix.ruby-version }}
