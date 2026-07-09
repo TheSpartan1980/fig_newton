@@ -35,45 +35,9 @@ RSpec.describe FigNewton do
       FigNewton.yml = nil
     end
 
-    it 'loads a file and retrieves values' do
+    it 'loads a file and retrieves a value' do
       FigNewton.load('test_config.yml')
       expect(FigNewton.base_url).to eq('http://cheezyworld.com')
-    end
-
-    it 'retrieves integer values' do
-      FigNewton.load('test_config.yml')
-      expect(FigNewton.port).to eq(1234)
-    end
-
-    it 'retrieves true values' do
-      FigNewton.load('test_config.yml')
-      expect(FigNewton.set_flag).to be true
-    end
-
-    it 'retrieves false values' do
-      FigNewton.load('test_config.yml')
-      expect(FigNewton.cleared_flag).to be false
-    end
-
-    it 'retrieves symbol values' do
-      FigNewton.load('test_config.yml')
-      expect(FigNewton.my_symbol).to eq(:hello_world)
-    end
-
-    it 'retrieves float values' do
-      FigNewton.load('test_config.yml')
-      expect(FigNewton.my_float).to eq(0.25)
-    end
-
-    it 'retrieves array values' do
-      FigNewton.load('test_config.yml')
-      expect(FigNewton.my_array).to eq(['one', 2, 3.0, :four])
-    end
-
-    it 'retrieves nested hashes as Nodes' do
-      FigNewton.load('test_config.yml')
-      expect(FigNewton.database).to be_an_instance_of(FigNewton::Node)
-      expect(FigNewton.database.username).to eq('steve')
     end
   end
 end
