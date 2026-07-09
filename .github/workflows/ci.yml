@@ -17,7 +17,7 @@ jobs:
         ruby-version: ['2.6', '2.7', '3.0']
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Set up Ruby
         # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
         # change this to (see https://github.com/ruby/setup-ruby#versioning):
@@ -30,7 +30,7 @@ jobs:
       - name: "Tar files"
         if: ${{ success() || failure() }}
         run: tar -cvf rspec-tests-${{ matrix.ruby-version }}.tar rspec-test-results.html
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         if: ${{ success() || failure() }}
         with:
           name: rspec-tests-${{ matrix.ruby-version }}
@@ -42,7 +42,7 @@ jobs:
       - name: "Tar files"
         if: ${{ success() || failure() }}
         run: tar -cvf cucumber-tests-${{ matrix.ruby-version }}.tar cucumber-test-results.html
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         if: ${{ success() || failure() }}
         with:
           name: cucumber-tests-${{ matrix.ruby-version }}
