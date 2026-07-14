@@ -1,3 +1,11 @@
+=== Version 1.2.0
+* Enhancements
+  * Dropped EOL Ruby versions (2.6, 2.7, 3.0) from CI and added 3.1+
+  * Bumped deprecated GitHub Actions (checkout, upload-artifact) from v2 to v4
+  * Expanded RSpec unit tests from 1 to 52 tests covering all modules, edge cases, and file-loading strategies
+* Fixes
+  * Removed obsolete Ruby 1.9 SimpleCov guard from spec_helper
+
 === Version 1.1.0
 * Fixes & Updates
   * Updated dependencies
